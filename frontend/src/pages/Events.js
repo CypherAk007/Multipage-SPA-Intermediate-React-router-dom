@@ -1,23 +1,15 @@
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
 
-const EVENTS = [
-    {id:'e1',title:'Event1'},
-    {id:'e2',title:'Event2'},
-    {id:'e3',title:'Event3'},
-]
+import EventsList from '../components/EventsList';
+import { useLoaderData } from 'react-router-dom';
 
+function EventsPage() {
+    const events = useLoaderData()
+  return (
+    <>
+     <EventsList events={events} />
+    </>
+  );
+}
 
-const EventsPage = ()=>{
-
-    // const params = useParams()
-    return(
-        <div>
-            <h1 className=" text-5xl">EventsPage</h1>
-            <ul>
-                {EVENTS.map((event)=><li key={event.id}><Link to={event.id}>{event.title}</Link></li>)}
-                </ul>    
-        </div>
-    )
- }
-
- export default EventsPage;
+export default EventsPage;
