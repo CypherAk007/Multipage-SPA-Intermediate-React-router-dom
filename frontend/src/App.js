@@ -8,6 +8,7 @@ import EventDetailPage from "./pages/EventDetail";
 import NewEventPage from "./pages/NewEvent";
 import EditEventPage from "./pages/EditEvent";
 import EventsNavigation from './components/EventsNavigation'
+import EventsRootLayout from "./components/EventsRootLayout";
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
 //    - HomePage
 //    - EventsPage
@@ -32,17 +33,15 @@ function App() {
   const router = createBrowserRouter([
     {path:'/',element:<RootLayout></RootLayout>,children:[
       {index:true,element:<HomePage></HomePage>},
-      {path:'events',element:<EventsPage></EventsPage>},
-      {path:'events/:eventId',element:<EventDetailPage></EventDetailPage>},
-      {path:'events/new',element:<NewEventPage></NewEventPage>},
-      {path:'events/:eventId/edit',element:<EditEventPage></EditEventPage>},
+      {path:'events',element:<EventsRootLayout></EventsRootLayout>,children:[
+        {index:true,element:<EventsPage></EventsPage>},
+        {path:':eventId',element:<EventDetailPage></EventDetailPage>},
+        {path:'new',element:<NewEventPage></NewEventPage>},
+        {path:':eventId/edit',element:<EditEventPage></EditEventPage>},
+      ]},
+      
     ]},
-    // {path:'/events',element:<EventsNavigation></EventsNavigation>,children:[
-    //   {path:'/',element:<HomePage></HomePage>},
-    //   {path:':eventId',element:<EventDetailPage></EventDetailPage>},
-    //   {path:'new',element:<NewEventPage></NewEventPage>},
-    //   {path:':eventId/edit',element:<EditEventPage></EditEventPage>},
-    // ]},
+
   ])
 
   return <div>
